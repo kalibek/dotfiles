@@ -11,7 +11,13 @@ Plug 'rafi/awesome-vim-colorschemes'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 call plug#end()
+
 
 filetype plugin on
 syntax on
@@ -43,19 +49,27 @@ nnoremap <leader>p :bp<cr>
 nnoremap <leader>l :ls<cr>
 nnoremap <leader>w <c-w>w 
 
+
+nnoremap <leader>i :GoImports<cr>
+nnoremap <leader>f :GoFmt<cr>
+nnoremap <leader>d :GoDef<cr>
 " typescript commands
 nnoremap <C-p> :FZF<cr>
 
 set number
 " show existing tab with 2 spaces width
-set tabstop=4
+set tabstop=2
 " when indenting with '>', use 2 spaces width
-set shiftwidth=4
+set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
 
 let delimitMate_expand_cr = 1
 
 " Colorscheme
-" colorscheme minimalist
+colorscheme minimalist
 
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync

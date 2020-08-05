@@ -30,7 +30,7 @@ font pango: Source Code Pro for Powerline Medium 10
 floating_modifier $mod
 
 # exec --no-startup-id compton -f -i 0.65 --active-opacity 0.95
-exec --no-startup-id compton -f -i 0.85
+exec --no-startup-id compton
 
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
@@ -167,8 +167,11 @@ for_window [class="^.*"] border pixel 2
 exec_always --no-startup-id dunst
 bindsym $mod+F4 kill
 bindsym $mod+i exec google-chrome
-bindsym $mod+Shift+x exec i3lock -c 000000
 bindsym $mod+p move workspace to output right
+
+# autolock
+bindsym $mod+Shift+x exec ~/.autolock.sh
+exec xautolock -time 15 -locker '~/.autolock.sh' &
 
 exec --no-startup-id feh --bg-scale ~/Downloads/background.jpg
 

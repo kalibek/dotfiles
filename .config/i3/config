@@ -166,12 +166,12 @@ for_window [class="^.*"] border pixel 2
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 bindsym $mod+F4 kill
-bindsym $mod+i exec google-chrome
+bindsym $mod+i exec google-chrome-stable
 bindsym $mod+p move workspace to output right
 
 # autolock
 bindsym $mod+Shift+x exec ~/.autolock.sh
-exec xautolock -time 5 -locker '~/.autolock.sh' &
+exec xautolock -corners +00- -time 5 -locker '~/.autolock.sh' &
 
 exec --no-startup-id feh --bg-scale ~/Downloads/background.jpg
 
@@ -198,3 +198,6 @@ client.focused          $bg-color           $bg-color          $text-color      
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
+
+bindsym $mod+m exec xfce4-terminal -e 'bash -c "mc"'
+bindsym $mod+x exec xfce4-terminal -e 'alsamixer'

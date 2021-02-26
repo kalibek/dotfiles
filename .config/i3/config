@@ -88,6 +88,7 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+set $ws0 "0"
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -97,7 +98,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -109,7 +109,11 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+0 workspace $ws0
+
+# next previous workspace
+bindsym Control+$mod+Left workspace prev
+bindsym Control+$mod+Right workspace next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -121,7 +125,7 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+0 move container to workspace $ws0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -170,7 +174,7 @@ bindsym $mod+i exec google-chrome-stable
 bindsym $mod+p move workspace to output right
 
 # autolock
-bindsym $mod+Shift+x exec ~/.autolock.sh
+bindsym control+$mod+l exec ~/.autolock.sh
 exec xautolock -corners +00- -time 5 -locker '~/.autolock.sh' &
 
 exec --no-startup-id feh --bg-scale ~/Downloads/background.jpg
@@ -181,6 +185,8 @@ bindsym --release Print exec scrot 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~
 
 # OSX-like area selection screenshots
 bindsym --release Shift+Print exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection
+
+bindsym --release Shift+$mod+s exec scrot -s 'screenshot_%Y%m%d_%H%M%S.png' -e 'mkdir -p ~/Pictures/screenshots && mv $f ~/Pictures/screenshots && xclip -selection clipboard -t image/png -i ~/Pictures/screenshots/`ls -1 -t ~/Pictures/screenshots | head -1`' # Area selection
 
 # thin borders
 hide_edge_borders both
@@ -201,3 +207,12 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 bindsym $mod+m exec xfce4-terminal -e 'bash -c "mc"'
 bindsym $mod+x exec xfce4-terminal -e 'alsamixer'
+bindsym $mod+c exec xfce4-terminal -e 'bash -c "vi ~/.config/i3/config"'
+
+exec teams
+exec skypeforlinux
+exec telegram-desktop
+assign [class="Microsoft Teams - Preview"] $ws7
+assign [class="Skype"] $ws8
+assign [class="TelegramDesktop"] $ws9
+

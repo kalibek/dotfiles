@@ -52,6 +52,7 @@ nnoremap <leader>w <c-w>w
 nnoremap <leader>i :GoImports<cr>
 nnoremap <leader>f :GoFmt<cr>
 nnoremap <leader>d :GoDef<cr>
+nnoremap <leader>r :GoRef<cr>
 " typescript commands
 nnoremap <C-p> :FZF<cr>
 

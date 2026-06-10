@@ -1,0 +1,4 @@
+imap jj <Esc>
+set timeoutlen=1000
+map L $
+map H ^
